@@ -1,0 +1,22 @@
+{{define "partials/list.html"}}
+  {{if .Snippets}}
+    <div class="list">
+      {{range .Snippets}}
+        <article class="snippet-card" id="snippet-{{.ID}}">
+          <div class="card-head">
+            <a href="/snippets/{{.ID}}">{{.Title}}</a>
+            <span>{{.Language}} · {{.UpdatedAt.Format "Jan 2"}}</span>
+          </div>
+          <div class="tag-row">
+            {{range .Tags}}<a href="/?tag={{.}}">#{{.}}</a>{{end}}
+          </div>
+          <a class="code-link" href="/snippets/{{.ID}}">
+            <div class="code">{{highlight .Language .Content}}</div>
+          </a>
+        </article>
+      {{end}}
+    </div>
+  {{else}}
+    <p class="empty">No snippets found.</p>
+  {{end}}
+{{end}}

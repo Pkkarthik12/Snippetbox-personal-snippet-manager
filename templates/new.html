@@ -1,0 +1,29 @@
+{{define "title"}}New snippet - Snippetbox{{end}}
+{{define "content"}}
+  <form class="editor" action="/snippets" method="post">
+    <div class="editor-head">
+      <h1>New snippet</h1>
+      <button class="button primary" type="submit">Save</button>
+    </div>
+    {{if .Error}}<p class="error">{{.Error}}</p>{{end}}
+    <label>
+      <span>Title</span>
+      <input name="title" required autofocus>
+    </label>
+    <div class="grid-two">
+      <label>
+        <span>Language</span>
+        <input name="language" value="go" required>
+      </label>
+      <label>
+        <span>Tags</span>
+        <input name="tags" placeholder="go cli template">
+      </label>
+    </div>
+    <label>
+      <span>Code</span>
+      <textarea name="content" spellcheck="false" required></textarea>
+    </label>
+  </form>
+{{end}}
+{{template "layout" .}}

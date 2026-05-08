@@ -1,0 +1,24 @@
+{{define "layout"}}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{block "title" .}}Snippetbox{{end}}</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">Snippetbox</a>
+    <form class="search" action="/" method="get">
+      <input name="q" value="{{.Query}}" placeholder="Search snippets..." hx-get="/" hx-trigger="keyup changed delay:180ms" hx-target="#snippet-list" hx-push-url="true">
+    </form>
+    <a class="button" href="/snippets/new">+ New</a>
+  </header>
+  <main class="shell">
+    {{block "content" .}}{{end}}
+  </main>
+</body>
+</html>
+{{end}}

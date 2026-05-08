@@ -1,0 +1,13 @@
+{{define "title"}}Snippetbox{{end}}
+{{define "content"}}
+  <nav class="tags" aria-label="Tags">
+    <a class="{{if not .Tag}}active{{end}}" href="/">All</a>
+    {{range .Tags}}
+      <a class="{{if eq $.Tag .}}active{{end}}" href="/?tag={{.}}">#{{.}}</a>
+    {{end}}
+  </nav>
+  <section id="snippet-list">
+    {{template "partials/list.html" .}}
+  </section>
+{{end}}
+{{template "layout" .}}

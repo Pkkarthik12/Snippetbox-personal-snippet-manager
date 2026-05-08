@@ -1,0 +1,20 @@
+{{define "title"}}{{.Snippet.Title}} - Snippetbox{{end}}
+{{define "content"}}
+  <article class="snippet-detail">
+    <div class="snippet-meta">
+      <div>
+        <a class="back" href="/">Back</a>
+        <h1>{{.Snippet.Title}}</h1>
+        <p>{{.Snippet.Language}} · {{.Snippet.UpdatedAt.Format "Jan 2, 2006 15:04"}}</p>
+      </div>
+      <form action="/snippets/{{.Snippet.ID}}/delete" method="post">
+        <button class="button danger" type="submit">Delete</button>
+      </form>
+    </div>
+    <div class="tags">
+      {{range .Snippet.Tags}}<a href="/?tag={{.}}">#{{.}}</a>{{end}}
+    </div>
+    <div class="code">{{highlight .Snippet.Language .Snippet.Content}}</div>
+  </article>
+{{end}}
+{{template "layout" .}}
